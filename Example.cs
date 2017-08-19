@@ -32,7 +32,7 @@ public class Example : MonoBehaviour
 		protected override void Begin()
 		{
 			_count = 10;
-			// Debug.Log( $"{Owner.Foo}" ); // Owner기능이 없음
+			// Debug.Log( $"{Owner.Foo}" ); // Owner기능이 없음, 출력 실패
 		}
 
 		protected override void Update()
@@ -69,7 +69,7 @@ public class Example : MonoBehaviour
 		protected override void Begin()
 		{
 			_count = 10;
-			Debug.Log( $"{Owner.Foo}" ); // Owner는 Example의 Instance
+			Debug.Log( $"{Owner.Foo}" ); // Owner는 Example의 Instance, "Bar" 출력
 			Invoke<OwnerEndState>();
 		}
 
