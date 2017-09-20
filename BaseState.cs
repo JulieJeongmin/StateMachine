@@ -12,20 +12,20 @@ namespace Lofle
 	{
 		public class Permission
 		{
-			static protected void SetOwnerStateMachine( BASE_STATE_TYPE state, MACHINE machine ) => state.SetOwnerStateMachine( machine );
-			static protected void Ready( BASE_STATE_TYPE state ) => state.Ready();
-			static protected IEnumerator Coroutine( BASE_STATE_TYPE state ) => state.Coroutine();
+			static protected void SetOwnerStateMachine( BASE_STATE_TYPE state, MACHINE machine ) { state.SetOwnerStateMachine( machine ); }
+			static protected void Ready( BASE_STATE_TYPE state ) { state.Ready(); }
+			static protected IEnumerator Coroutine( BASE_STATE_TYPE state ) { return state.Coroutine(); }
 		}
 
 		private bool _bActive = false;
 		private MACHINE _ownerStateMachine = default( MACHINE );
 
-		public bool isActive => _bActive;
+		public bool isActive { get { return _bActive; } }
 
 		/// <summary>
 		/// 현재 상태를 제어중인 상태머신, 
 		/// </summary>
-		public MACHINE OwnerStateMachine => _ownerStateMachine;
+		public MACHINE OwnerStateMachine { get { return _ownerStateMachine; } }
 
 		/// <summary>
 		/// 상태 종료
@@ -64,8 +64,8 @@ namespace Lofle
 			return OwnerStateMachine.Change<STATE>();
 		}
 
-		private void SetOwnerStateMachine( MACHINE machine ) => _ownerStateMachine = machine;
-		
+		private void SetOwnerStateMachine( MACHINE machine ) { _ownerStateMachine = machine; }
+
 		private void Ready() { _bActive = true; }
 		
 		private IEnumerator Coroutine()

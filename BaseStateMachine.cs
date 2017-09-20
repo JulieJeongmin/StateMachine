@@ -15,7 +15,7 @@ namespace Lofle
 		private Dictionary<Type, BASE_STATE_TYPE> _stateDic = new Dictionary<Type, BASE_STATE_TYPE>();
 		private Coroutine _coroutine = null;
 
-		protected BASE_STATE_TYPE CurrentState => _currentState;
+		protected BASE_STATE_TYPE CurrentState { get { return _currentState; } }
 
 		/// <summary>
 		/// 상태 전환
@@ -40,7 +40,7 @@ namespace Lofle
 			{
 				yield return Coroutine( _currentState );
 			}
-			while( CurrentState?.isActive ?? false );
+			while( CurrentState != null && CurrentState.isActive );
 		}
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace Lofle
 	public class StateMachine<OWNER> : BaseStateMachine<StateMachine<OWNER>, State<OWNER>>
 	{
 		private OWNER _owner = default( OWNER );
-		protected OWNER Owner => _owner;
+		protected OWNER Owner { get { return _owner; } }
 
 		public StateMachine( OWNER instance )
 		{
